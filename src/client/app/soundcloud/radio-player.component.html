@@ -1,0 +1,60 @@
+<div *ngIf="isControlTypeSetTo(ControlTypes.Simple)">
+  <div>
+    <div>{{song.title}}</div>
+    <div>
+      Uploaded by <a href="https://soundcloud.com/{{song.user.username}}"
+        target="_blank">{{song.user.username}}</a> to 
+      <a href="{{song.permalink_url}}" target="_blank">soundcloud</a>
+      on {{song.created_at | amDateFormat:'MM/DD/YYYY'}}
+    </div>
+    <div>{{song.duration | duration}}</div>
+  </div>
+  <div>
+    <button (click)="toggle()" class="btn btn-secondary">
+      <i *ngIf="!isPlaying" class="fa fa-play"></i>
+      <i *ngIf="isPlaying" class="fa fa-pause"></i>
+    </button>
+    <button class="btn btn-secondary">
+      <i class="fa fa-step-forward"></i>
+    </button>
+    <div class="radio-player__timetag tag tag-info pull-xs-right">
+      {{songProgressMs | duration}}/{{song.duration | duration}}
+    </div>
+    <progress class="progress progress-info" value="{{songProgressPercent}}"
+      max="100">
+    </progress>
+    <div>
+      <h6>Volume</h6>
+      <input type="number" max="100" min="0"
+        [(ngModel)]="volume"
+        (ngModelChange)="changeVolume($event)">
+    </div>
+  </div>
+</div>
+
+<iframe [hidden]="!isControlTypeSetTo(ControlTypes.Soundcloud)"
+  id="soundcloud" width="100%" scrolling="no" frameborder="no" 
+  src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/274513784&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true">
+</iframe>
+
+<br>
+<button *ngIf="isControlTypeSetTo(ControlTypes.Soundcloud)"
+  (click)="setControlType(ControlTypes.Simple)" class="btn btn-secondary">
+  Use simple interface with volume control
+</button>
+<button *ngIf="isControlTypeSetTo(ControlTypes.Simple)"
+  (click)="setControlType(ControlTypes.Soundcloud)" class="btn btn-secondary">
+  Use default soundcloud interface
+</button>
+<br>
+<br>
+
+<div class="alert alert-info d-inline-block pull-xs-right">
+  <h4>Keyboard shortcuts</h4>
+	<dl>
+		<dt>Play/Pause</dt>
+		<dd>Spacebar</dd>
+		<dt>Change Volume</dt>
+		<dd>Up/Down Arrow</dd>
+	</dl>
+</div>

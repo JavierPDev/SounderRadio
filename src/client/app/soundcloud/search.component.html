@@ -1,0 +1,4 @@
+<form (submit)="search(searchTerm)" class="input-group sp-search">
+  <input class="form-control sp-search__input" type="text" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" placeholder="Search">
+  <span class="input-group-addon btn btn-outline-primary" id="basic-addon1" (click)="search(searchTerm)"><i class="fa fa-search"></i></span>
+</form>

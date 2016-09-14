@@ -1,0 +1,10 @@
+<div class="container container--base">
+  <div class="row">
+    <sp-search [searchTerm]="searchTerm"></sp-search>
+  </div>
+  <div class="row search-results">
+    <div *ngFor="let song of results" class="col-sm-3">
+      <sp-song-card [searchTerm]="searchTerm" [song]="song"></sp-song-card>
+    </div>
+  </div>
+</div>
