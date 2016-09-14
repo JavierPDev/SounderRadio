@@ -1,0 +1,17 @@
+<nav class="navbar navbar-fixed-top navbar-light navbar-dark bg-inverse">
+  <div class="container">
+    <a [routerLink]="['/']" class="navbar-brand">
+      Sounder Project
+    </a>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a [routerLink]="['/history']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+          History
+        </a>
+      </li>
+      <li>
+        <sp-search [clearAfterSubmission]="true" class="form-inline pull-xs-right"></sp-search>
+      </li>
+    </ul>
+  </div>
+</nav>

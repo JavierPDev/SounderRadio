@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>SounderProject</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/node_modules/angular2-toaster/lib/toaster.css">
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/dist/dev/css/main.css?1473886339346">
+  <!-- endinject -->
+</head>
+<body>
+
+  <sp-app>Loading...</sp-app>
+
+  <script>
+  // Fixes undefined module function in SystemJS bundle
+  function module() {}
+  </script>
+
+  <!-- shims:js -->
+  <script src="/node_modules/core-js/client/shim.min.js?1473886339340"></script>
+  <script src="/node_modules/systemjs/dist/system.src.js?1473886339341"></script>
+  <!-- endinject -->
+
+  
+  <script src="/app/system-config.js"></script>
+  
+
+  <!-- libs:js -->
+  <script src="/node_modules/zone.js/dist/zone.js?1473886339345"></script>
+  <script src="/node_modules/rxjs/bundles/Rx.umd.min.js?1473886339345"></script>
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <!-- endinject -->
+
+  
+  <script>
+  System.import('app/main')
+    .catch(function (e) {
+      console.error(e,
+        'Report this error at https://github.com/mgechev/angular2-seed/issues');
+    });
+  </script>
+  
+
+</body>
+</html>
