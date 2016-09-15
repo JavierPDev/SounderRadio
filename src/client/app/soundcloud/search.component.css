@@ -1,0 +1,20 @@
+form {
+  position: relative;
+}
+
+.search__input {
+  border: 1px solid grey;
+  border-radius: 5px;
+  border-bottom-right-radius: 5px!important;
+  border-top-right-radius: 5px!important;
+  z-index: 1;
+}
+
+i {
+  color: grey;
+  cursor: pointer;
+  position: absolute;
+  top: 30%;
+  right: 10px;
+  z-index: 9;
+}
