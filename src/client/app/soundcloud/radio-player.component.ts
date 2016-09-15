@@ -15,8 +15,11 @@ import { SoundcloudService } from './soundcloud.service';
 export class RadioPlayerComponent implements OnInit {
   @Input() radio;
   private _controlType: number = localStorage.controlType || ControlTypes.Simple;
+  private _defaultSongOptions: any = { auto_play: true };
+  private _nextSongIndex: number = 0;
   private _player: any;
   private _progressTimer: any;
+  private _songList: any[];
   public ControlTypes = ControlTypes;
   public isPlaying: boolean = true;
   public song: any;
@@ -29,19 +32,17 @@ export class RadioPlayerComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this._toasterService.pop('error', 'Title', 'Hello world!');
     // Initialize radio using chosen song
     this.song = this.radio;
     let url = `${this._soundcloudService.basePath}/${this.song.id}`;
-    let options = { auto_play: true };
     this._player = new SoundcloudWidget('soundcloud');
-    this._player.load(url, options)
+    this._player.load(url, this._defaultSongOptions)
       .then(() => {
-        this._player.getCurrentSound(sound => this.song = sound;
+        this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
-    ]));
-    this._player.on(SoundcloudWidget.events.FINISH,
-      () => console.log('FINISHED'));
+        this._getSongList();
+    });
+    this._player.on(SoundcloudWidget.events.FINISH, this.playNextSong);
     this._setProgressTimer();
     this._bindKeyboardShortcuts();
   }
@@ -54,20 +55,54 @@ export class RadioPlayerComponent implements OnInit {
     document.addEventListener('keydown', this._keydownEventHandler, false);
   }
 
-  private _keydownEventHandler = (event):void => {
+  private _getSongList(): void {
+    let searchBy = this.radio.genre || this.radio.tag_list;
+    console.log('searching by', searchBy);
+    this._soundcloudService.search(searchBy)
+      .subscribe(res => {
+        this._songList = this._soundcloudService.shuffleSongList(res.json());
+      },
+        err => this._toasterService.pop('error', 'Error', err));
+  }
+
+  private _keydownEventHandler = (event: any):void => {
     if (event.target.nodeName === 'BODY') {
       switch (event.keyCode) {
         case Keycodes.Spacebar:
+          event.preventDefault();
           this.toggle();
           break;
         case Keycodes.UpArrow:
+          event.preventDefault();
           this.changeVolume(this.volume + 10);
           break;
         case Keycodes.DownArrow:
+          event.preventDefault();
           this.changeVolume(this.volume - 10);
+        break;
+        case Keycodes.RightArrow:
+          event.preventDefault();
+          this.playNextSong();
         break;
       }
     }
+  }
+
+  private playNextSong = ():void => {
+    // // Add song to history
+    // let songHistory = JSON.parse(localStorage.songHistory) || [];
+    // // Tag with radio title for song history filtering
+    // this.song.radioStation = this.radio.title;
+    // songHistory.push(this.song);
+    // localStorage.songHistory = JSON.stringify(songHistory);;
+    let nextSong = this._songList[this._nextSongIndex];
+    this._nextSongIndex++;
+    this._player.load(nextSong.uri, this._defaultSongOptions)
+      .then(() => {
+        this.changeVolume(this.volume);
+        this.song = nextSong;
+        this._toasterService.pop('', 'Now Playing', this.song.title);
+      });
   }
 
   private _setProgressTimer():void {

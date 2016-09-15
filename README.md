@@ -1,6 +1,6 @@
 # Introduction
 
-SounderProject is a radio web app using [Soundcloud](http://soundcloud.com). It is built using Angular2 with the [angular2-seed project](https://github.com/mgechev/angular2-seed) as serving as the base.
+SounderProject is a simple radio web app using [Soundcloud](http://soundcloud.com). It is built using Angular2 with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. SounderProject is a work in process.
 
 SounderProject uses the following dependencies:
 
