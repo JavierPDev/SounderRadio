@@ -11,8 +11,9 @@ import { SoundcloudService } from './soundcloud.service';
   styleUrls: ['search-page.component.css'],
 })
 export class SearchPageComponent implements OnInit {
-  public searchTerm: string;
   public results[]: any;
+  public searchCompleted: boolean = false;
+  public searchTerm: string;
 
   constructor(private _activatedRoute: ActivatedRoute,
              private _soundcloudService: SoundcloudService,
@@ -22,8 +23,11 @@ export class SearchPageComponent implements OnInit {
     this._activatedRoute.params.subscribe(params => {
       this.searchTerm = params.searchTerm;
       this._soundcloudService.search(this.searchTerm)
-        .subscribe(res => this.results = res.json(),
-                  err => this._toasterService.pop('error', 'Error', err));
+        .subscribe(res => {
+          this.searchCompleted = true;
+          this.results = res.json();
+        },
+          err => this._toasterService.pop('error', 'Error', err));
     });
   }
 

@@ -3,6 +3,9 @@
     <sp-search [searchTerm]="searchTerm"></sp-search>
   </div>
   <div class="row search-results">
+    <div *ngIf="!results.length && searchCompleted" class="alert alert-info">
+      No results
+    </div>
     <div *ngFor="let song of results" class="col-sm-3">
       <sp-song-card [searchTerm]="searchTerm" [song]="song"></sp-song-card>
     </div>
