@@ -17,9 +17,11 @@ export class SoundcloudService {
   }
 
   public search(searchTerm: string) {
+    const LIMIT: number = 200;
     let params = new URLSearchParams();
     params.set('client_id', this._clientId);
     params.set('q', searchTerm);
+    params.set('limit', LIMIT);
     return this._http.get(this.basePath, {search: params});
   }
 }
