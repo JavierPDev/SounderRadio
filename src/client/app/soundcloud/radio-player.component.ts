@@ -12,7 +12,7 @@ import { SoundcloudService } from './soundcloud.service';
   templateUrl: 'radio-player.component.html',
   styleUrls: ['radio-player.component.css']
 })
-export class RadioPlayerComponent implements OnInit {
+export class RadioPlayerComponent implements OnInit, OnDestroy {
   @Input() radio;
   private _controlType: number = localStorage.controlType || ControlTypes.Simple;
   private _defaultSongOptions: any = { auto_play: true };
