@@ -37,7 +37,7 @@ export class RadioPlayerComponent implements OnInit {
     this._player = new SoundcloudWidget('soundcloud');
     this._player.load(url, options)
       .then(() => {
-        this._player.getCurrentSound(sound => this.song = sound;
+        this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
     ]));
     this._player.on(SoundcloudWidget.events.FINISH,
