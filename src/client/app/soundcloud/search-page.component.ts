@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
@@ -11,6 +11,7 @@ import { SoundcloudService } from './soundcloud.service';
   styleUrls: ['search-page.component.css'],
 })
 export class SearchPageComponent implements OnInit {
+  private _cssClass: string = 'plain-background';
   public results[]: any;
   public searchCompleted: boolean = false;
   public searchTerm: string;
@@ -20,6 +21,7 @@ export class SearchPageComponent implements OnInit {
              private _toasterService: ToasterService) {}
 
   ngOnInit() {
+    document.body.classList.add(this._cssClass);
     this._activatedRoute.params.subscribe(params => {
       this.searchTerm = params.searchTerm;
       this._soundcloudService.search(this.searchTerm)
@@ -31,6 +33,9 @@ export class SearchPageComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    document.body.classList.remove(this._cssClass);
+  }
 }
 
 

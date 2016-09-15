@@ -1,5 +1,28 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-image: url('/assets/bg.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.plain-background {
+  background-color: #282828;
+  background-image: none;
+}
+
 .container--base {
   margin-top: 100px;
+}
+
+.text-block {
+  background-color: rgba(0, 0, 0, .7);
+  color: #fff;
+  border-radius: 10px;
+  padding: 30px;
 }
 
 .animate-spinner {
@@ -21,6 +44,7 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 
+  color: #fff;
   font-size: 36px;
 	position: absolute;
 	top: 45%;
