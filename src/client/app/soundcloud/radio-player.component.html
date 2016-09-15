@@ -1,11 +1,23 @@
 <div *ngIf="isControlTypeSetTo(ControlTypes.Simple)">
   <div>
-    <div>{{song.title}}</div>
+    <h5>{{song.title}}</h5>
     <div>
       Uploaded by <a href="https://soundcloud.com/{{song.user.username}}"
         target="_blank">{{song.user.username}}</a> to 
       <a href="{{song.permalink_url}}" target="_blank">soundcloud</a>
       on {{song.created_at | amDateFormat:'MM/DD/YYYY'}}
+    </div>
+    <div class="album-art">
+      <img class="album-art__image" src="{{song.artwork_url || '/assets/headphones.jpg'}}" alt="Album art">
+    </div>
+    <div class="tag tag-primary" title="Likes"><i class="fa fa-thumbs-up"></i> 
+      {{song.likes_count || song.favoritings_count | number}}
+    </div>
+    <div class="tag tag-primary" title="Plays"><i class="fa fa-play-circle-o"></i> 
+      {{song.playback_count | number}}
+    </div>
+    <div *ngIf="song.purchase_url">
+      <a class="tag tag-success" href="{{song.purchase_url}}" target="_blank"><i class="fa fa-shopping-cart"></i> Purchase</a>
     </div>
     <div>{{song.duration | duration}}</div>
   </div>

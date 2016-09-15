@@ -1,3 +1,11 @@
+.album-art {
+  width: 200px;
+}
+
+.album-art__image {
+  width: 100%;
+}
+
 .radio-player__timetag {
   position: relative;
   bottom: -20px;
