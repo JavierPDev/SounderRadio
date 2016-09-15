@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
-import { SounderHomeComponent } from './sounder-home.component';
 import { SongCardComponent } from './song-card.component';
 import { SearchComponent } from './search.component';
 import { SearchPageComponent } from './search-page.component';
@@ -16,7 +15,6 @@ import { DurationPipe } from './duration.pipe';
 @NgModule({
   imports: [CommonModule, FormsModule, RouterModule, MomentModule],
   declarations: [
-    SounderHomeComponent,
     SongCardComponent,
     SearchComponent,
     SearchPageComponent,
@@ -25,7 +23,6 @@ import { DurationPipe } from './duration.pipe';
     DurationPipe
   ],
   exports: [
-    SounderHomeComponent,
     SongCardComponent,
     SearchComponent,
     SearchPageComponent
