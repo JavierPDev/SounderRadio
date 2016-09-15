@@ -26,7 +26,7 @@
       <i *ngIf="!isPlaying" class="fa fa-play"></i>
       <i *ngIf="isPlaying" class="fa fa-pause"></i>
     </button>
-    <button class="btn btn-secondary">
+    <button (click)="playNextSong()" class="btn btn-secondary">
       <i class="fa fa-step-forward"></i>
     </button>
     <div class="radio-player__timetag tag tag-info pull-xs-right">
@@ -52,7 +52,7 @@
 <br>
 <button *ngIf="isControlTypeSetTo(ControlTypes.Soundcloud)"
   (click)="setControlType(ControlTypes.Simple)" class="btn btn-secondary">
-  Use simple interface with volume control
+  Use simple interface with volume and radio controls
 </button>
 <button *ngIf="isControlTypeSetTo(ControlTypes.Simple)"
   (click)="setControlType(ControlTypes.Soundcloud)" class="btn btn-secondary">
@@ -66,7 +66,9 @@
 	<dl>
 		<dt>Play/Pause</dt>
 		<dd>Spacebar</dd>
-		<dt>Change Volume</dt>
+		<dt>Change volume</dt>
 		<dd>Up/Down Arrow</dd>
+		<dt>Skip song</dt>
+		<dd>Right Arrow</dd>
 	</dl>
 </div>

@@ -24,4 +24,26 @@ export class SoundcloudService {
     params.set('limit', LIMIT);
     return this._http.get(this.basePath, {search: params});
   }
+
+  /**
+   * Shuffle array of songs using Fisher-Yates Shuffle
+   */ 
+  public shuffleSongList(songList: any[]): any[] {
+		let currentIndex = songList.length;
+    let temporaryValue;
+    let randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = songList[currentIndex];
+      songList[currentIndex] = songList[randomIndex];
+      songList[randomIndex] = temporaryValue;
+    }
+    return songList;
+  }
 }
