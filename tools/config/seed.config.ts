@@ -1,4 +1,5 @@
 import { join } from 'path';
+import * as slash from 'slash';
 import { argv } from 'yargs';
 
 import { Environments, InjectableDependency } from './seed.config.interfaces';
@@ -83,7 +84,7 @@ export class SeedConfig {
    * The base path of node modules.
    * @type {string}
    */
-  NPM_BASE = join(this.APP_BASE, 'node_modules/');
+  NPM_BASE = slash(join(this.APP_BASE, 'node_modules/'));
 
   /**
    * The flag for the hot-loader option of the application.
@@ -143,7 +144,7 @@ export class SeedConfig {
    * `index.html`.
    * @type {string}
    */
-  APP_TITLE = 'SounderProject';
+  APP_TITLE = 'Welcome to angular2-seed!';
 
   /**
    * The base folder of the applications source files.
@@ -277,7 +278,7 @@ export class SeedConfig {
     { src: 'zone.js/dist/zone.js', inject: 'libs' },
     { src: 'core-js/client/shim.min.js', inject: 'shims' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims', env: ENVIRONMENTS.DEVELOPMENT },
-    { src: 'rxjs/bundles/Rx.umd.min.js', inject: 'libs', env: ENVIRONMENTS.DEVELOPMENT },
+    { src: 'rxjs/bundles/Rx.min.js', inject: 'libs', env: ENVIRONMENTS.DEVELOPMENT },
   ];
 
   /**
@@ -310,7 +311,7 @@ export class SeedConfig {
    * The configuration of SystemJS for the `dev` environment.
    * @type {any}
    */
-  protected SYSTEM_CONFIG_DEV: any = {
+  SYSTEM_CONFIG_DEV: any = {
     defaultJSExtensions: true,
     packageConfigPaths: [
       `/node_modules/*/package.json`,
@@ -449,7 +450,32 @@ export class SeedConfig {
      * @type {any}
      */
     'browser-sync': {
-      middleware: [require('connect-history-api-fallback')({ index: `${this.APP_BASE}index.html` })],
+      middleware: [require('connect-history-api-fallback')({
+        index: `${this.APP_BASE}index.html`,
+        rewrites: [
+          {
+            from: new RegExp(`^${this.NPM_BASE}.*$`),
+            to: (context:any) => context.parsedUrl.pathname
+          },
+          {
+            from: new RegExp(`^\/${this.BOOTSTRAP_DIR}\/.*$`),
+            to: (context:any) => context.parsedUrl.pathname
+          },
+          {
+            from: new RegExp(`^${this.APP_BASE}${this.APP_SRC}\/.*$`),
+            to: (context:any) => context.parsedUrl.pathname
+          },
+          {
+            from: new RegExp(`^${this.ASSETS_SRC.replace(this.APP_SRC, '')}\/.*$`),
+            to: (context:any) => context.parsedUrl.pathname
+          },
+          {
+            from: new RegExp(`^${this.CSS_DEST.replace(this.APP_DEST, '')}\/.*$`),
+            to: (context:any) => `/${slash(join(this.APP_DEST, context.parsedUrl.pathname))}`
+          }
+        ],
+        disableDotRule: true
+      })],
       port: this.PORT,
       startPath: this.APP_BASE,
       open: false,
