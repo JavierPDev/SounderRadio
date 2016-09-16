@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { routes } from './app.routes';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
+import { HistoryModule } from './history/history.module';
 import { SoundcloudModule } from './soundcloud/soundcloud.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -20,6 +21,7 @@ import { SharedModule } from './shared/shared.module';
     RouterModule.forRoot(routes),
     AboutModule,
     HomeModule,
+    HistoryModule,
     SoundcloudModule,
     SharedModule.forRoot()],
   declarations: [AppComponent],
