@@ -41,14 +41,34 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
         this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
         this._getSongList();
+        this._addRadiotoHistory();
     });
-    this._player.on(SoundcloudWidget.events.FINISH, this.playNextSong);
+    this._player.on(SoundcloudWidget.events.FINISH, () => {
+      this._addSongToHistory();
+      this.playNextSong();
+    });
     this._setProgressTimer();
     this._bindKeyboardShortcuts();
   }
 
   ngOnDestroy() {
     this._unbindKeyboardShortcuts();
+  }
+
+  private _addRadiotoHistory(): void {
+    let radioHistory = localStorage.radioHistory ? 
+      JSON.parse(localStorage.radioHistory) : [];
+    radioHistory.push(this.radio);
+    localStorage.radioHistory = JSON.stringify(radioHistory);
+  }
+
+  private _addSongToHistory(): void {
+    let songHistory = localStorage.songHistory ? 
+      JSON.parse(localStorage.songHistory) : [];
+    // Tag with radio title for song history filtering
+    this.song.radioStation = this.radio.title;
+    songHistory.push(this.song);
+    localStorage.songHistory = JSON.stringify(songHistory);
   }
 
   private _bindKeyboardShortcuts(): void {
@@ -88,24 +108,6 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private playNextSong = ():void => {
-    // // Add song to history
-    // let songHistory = JSON.parse(localStorage.songHistory) || [];
-    // // Tag with radio title for song history filtering
-    // this.song.radioStation = this.radio.title;
-    // songHistory.push(this.song);
-    // localStorage.songHistory = JSON.stringify(songHistory);;
-    let nextSong = this._songList[this._nextSongIndex];
-    this._nextSongIndex++;
-    this._player.load(nextSong.uri, this._defaultSongOptions)
-      .then(() => {
-        this.changeVolume(this.volume);
-        this.song = nextSong;
-        this.isPlaying = true;
-        this._toasterService.pop('', 'Now Playing', this.song.title);
-      });
-  }
-
   private _setProgressTimer():void {
     this._progressTimer = setInterval(() => {
       this._player.getPosition()
@@ -133,6 +135,18 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
 
   public isControlTypeSetTo(controlType: number) {
     return this._controlType == controlType;
+  }
+
+  public playNextSong = ():void => {
+    let nextSong = this._songList[this._nextSongIndex];
+    this._nextSongIndex++;
+    this._player.load(nextSong.uri, this._defaultSongOptions)
+      .then(() => {
+        this.changeVolume(this.volume);
+        this.song = nextSong;
+        this.isPlaying = true;
+        this._toasterService.pop('', 'Now Playing', this.song.title);
+      });
   }
 
   public setControlType(controlType: number): void {

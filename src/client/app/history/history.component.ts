@@ -9,11 +9,15 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 export class HistoryComponent implements OnInit, OnDestroy {
   private _cssClass: string = 'plain-background';
+  public radios: any[];
+  public songs: any[];
 
   constructor() {}
 
   ngOnInit() {
     document.body.classList.add(this._cssClass);
+    this.radios = JSON.parse(localStorage.radioHistory);
+    this.songs = JSON.parse(localStorage.songHistory);
   }
 
   ngOnDestroy() {
