@@ -34,22 +34,24 @@
     </div>
   </div>
   <div class="radio-player__controls">
-    <button (click)="toggle()" class="btn btn-secondary" title="Play/Pause">
+    <span (click)="toggle()" class="radio-player__control" title="Play/Pause">
       <i *ngIf="!isPlaying" class="fa fa-play"></i>
       <i *ngIf="isPlaying" class="fa fa-pause"></i>
-    </button>
-    <button (click)="playNextSong()" class="btn btn-secondary" title="Skip">
+    </span>
+    <span (click)="playNextSong()" class="radio-player__control" title="Skip">
       <i class="fa fa-step-forward"></i>
-    </button>
+    </span>
     <input type="number" title="Volume control" class="radio-player__volume"
       min="0" max="100"
       [(ngModel)]="volume"
       (ngModelChange)="changeVolume($event)">
   </div>
-  <div class="radio-player__timetag tag tag-info pull-xs-right">
-    {{songProgressMs | duration}}/{{song.duration | duration}}
+  <div class="radio-player__timetag tag pull-xs-right">
+    <!-- Default to 1ms so 0:00 is displayed when song 
+      hasn't started playing yet -->
+    {{songProgressMs || 1 | duration}}/{{song.duration | duration}}
   </div>
-  <progress class="progress progress-info" value="{{songProgressPercent}}"
+  <progress value="{{songProgressPercent}}"
     max="100">
   </progress>
 </div>
@@ -69,7 +71,7 @@
   Use default soundcloud interface
 </button>
 
-<div class="alert alert-info d-inline-block pull-xs-right">
+<div class="text-block d-inline-block pull-xs-right">
   <h4>Keyboard shortcuts</h4>
 	<dl>
 		<dt>Play/Pause</dt>

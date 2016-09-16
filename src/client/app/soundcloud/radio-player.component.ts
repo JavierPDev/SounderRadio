@@ -101,6 +101,7 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
       .then(() => {
         this.changeVolume(this.volume);
         this.song = nextSong;
+        this.isPlaying = true;
         this._toasterService.pop('', 'Now Playing', this.song.title);
       });
   }
