@@ -10,7 +10,7 @@
       </div>
       <div *ngFor="let radioStation of favorites.slice(0, 100).reverse()">
         <a [routerLink]="['/radio', radioStation.id]" class="favorite-play">
-          {{radioStation.title}} <em>(added {{ addedAt | amTimeAgo }})</em>
+          {{radioStation.title}} <em>(added {{ radioStation.addedAt | amTimeAgo }})</em>
         </a>
       </div>
     </div>

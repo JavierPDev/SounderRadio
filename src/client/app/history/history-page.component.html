@@ -11,6 +11,8 @@
       <div *ngFor="let song of songs.slice(0, 100).reverse()">
         <a [routerLink]="['/radio', song.id]" class="history-play">
           {{song.title}}
+          <br>
+          <em>(played {{song.addedAt | amTimeAgo}})</em>
         </a>
       </div>
     </div>
@@ -27,6 +29,8 @@
       <div *ngFor="let radioStation of radioStations.slice(0, 100).reverse()">
         <a [routerLink]="['/radio', radioStation.id]" class="history-play">
           {{radioStation.title}}
+          <br>
+          <em>(added {{radioStation.addedAt | amTimeAgo}})</em>
         </a>
       </div>
     </div>
