@@ -58,6 +58,8 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
   private _addRadiotoHistory(): void {
     let radioHistory = localStorage.radioHistory ? 
       JSON.parse(localStorage.radioHistory) : [];
+    // Don't save radio station if it was last played
+    if (this.radio.id === radioHistory[radioHistory.length - 1].id) return;
     radioHistory.push(this.radio);
     localStorage.radioHistory = JSON.stringify(radioHistory);
   }
@@ -127,7 +129,8 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
   }
 
   public changeVolume(volume: number): void {
-    if (volume < 0 || volume > 100) return;
+    if (volume < 0) volume = 0;
+    if (volume > 100) volume = 100;
     localStorage.volume = volume;
     this.volume = volume;
     this._player.setVolume(volume / 100);
@@ -143,6 +146,8 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
     this._player.load(nextSong.uri, this._defaultSongOptions)
       .then(() => {
         this.changeVolume(this.volume);
+        this.songProgressMs = 0;
+        this.songProgressPercent = 0;
         this.song = nextSong;
         this.isPlaying = true;
         this._toasterService.pop('', 'Now Playing', this.song.title);
