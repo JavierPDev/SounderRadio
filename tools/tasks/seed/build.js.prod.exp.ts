@@ -12,7 +12,9 @@ const plugins = <any>gulpLoadPlugins();
  */
 
 export = () => {
-  let tsProject = makeTsProject();
+  // This made build long and annoying
+  // let tsProject = makeTsProject();
+  let tsProject = makeTsProject({isolatedModules: true});
   let src = [
     'typings/index.d.ts',
     Config.TOOLS_DIR + '/manual_typings/**/*.d.ts',

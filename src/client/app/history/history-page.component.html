@@ -1,0 +1,38 @@
+<div class="container container--base">
+  <div class="col-xs-6">
+    <h2 class="text-block">
+      <i class="fa fa-music"></i> 
+      Songs
+    </h2>
+    <div class="text-block">
+      <div *ngIf="!songs.length">
+        No songs in history yet.
+      </div>
+      <div *ngFor="let song of songs.slice(0, 100).reverse()">
+        <a [routerLink]="['/radio', song.id]" class="history-play">
+          {{song.title}}
+          <br>
+          <em>(played {{song.addedAt | amTimeAgo}})</em>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-6">
+    <h2 class="text-block">
+      <i class="fa fa-wifi"></i> 
+      Stations
+    </h2>
+    <div class="text-block">
+      <div *ngIf="!radioStations.length">
+        No radio stations in history yet.
+      </div>
+      <div *ngFor="let radioStation of radioStations.slice(0, 100).reverse()">
+        <a [routerLink]="['/radio', radioStation.id]" class="history-play">
+          {{radioStation.title}}
+          <br>
+          <em>(added {{radioStation.addedAt | amTimeAgo}})</em>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

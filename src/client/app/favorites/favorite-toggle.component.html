@@ -1,0 +1,12 @@
+<span>
+  <i *ngIf="!isFavorite"
+    (click)="addToFavorites()"
+    title="Add to favorites"
+    class="fa fa-heart-o">
+  </i>
+  <i *ngIf="isFavorite"
+    (click)="removeFromFavorites()"
+    title="Remove from favorites"
+    class="fa fa-heart">
+  </i>
+</span>

@@ -1,2 +1,2 @@
-export * from './history.component';
+export * from './history-page.component';
 export * from './history.routes';

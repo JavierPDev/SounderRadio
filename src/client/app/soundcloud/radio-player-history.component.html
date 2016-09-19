@@ -1,0 +1,14 @@
+<div class="history">
+  <!-- Reverse to order by last played and slice to skip current song -->
+  <a *ngFor="let song of songs.reverse().slice(1)" 
+      [routerLink]="['/radio', song.id]" 
+      title="Click to play song radio"
+      class="history__item">
+    <img class="history__item__image"
+      src="{{song.artwork_url || '/assets/headphones.jpg'}}"
+      alt="Album art">
+    <div class="history__item__link">
+      {{song.title}}
+    </div>
+  </a>
+</div>

@@ -1,9 +1,9 @@
 {
-  "name": "angular2-seed",
-  "version": "0.0.0",
-  "description": "Modular seed project for Angular 2 apps with fast, statically typed build",
+  "name": "SounderRadio",
+  "version": "0.1.0",
+  "description": "Online radio powered by SoundCloud http and widget api",
   "repository": {
-    "url": "https://github.com/mgechev/angular2-seed"
+    "url": "https://github.com/JavierPDev/SounderRadio"
   },
   "scripts": {
     "build.dev": "gulp build.dev --color --config-env dev",
@@ -33,7 +33,7 @@
     "webdriver-start": "webdriver-manager start",
     "webdriver-update": "webdriver-manager update"
   },
-  "author": "Minko Gechev <mgechev>",
+  "author": "Javier Pena <javier@javierdev.com>",
   "license": "MIT",
   "devDependencies": {
     "@angular/compiler-cli": "^0.6.1",
