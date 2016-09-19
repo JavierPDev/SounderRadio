@@ -11,7 +11,7 @@ import { Config } from './shared/index';
 })
 
 export class AppComponent {
-  public toasterConfig: ToasterConfig = new ToasterConfig({ positionClass: 'toast-bottom-right' });
+  public toasterConfig: ToasterConfig = new ToasterConfig({ positionClass: 'toast-top-right' });
   constructor() {
   }
 }
