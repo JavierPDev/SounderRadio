@@ -14,6 +14,11 @@
           History
         </a>
       </li>
+      <li class="nav-item">
+        <a [routerLink]="['/about']" [routerLinkActive]="['navbar-link-active']" [routerLinkActiveOptions]="{exact:true}" class="nav-link">
+          About
+        </a>
+      </li>
       <li>
         <sp-search [clearAfterSubmission]="true" class="form-inline pull-xs-right"></sp-search>
       </li>
