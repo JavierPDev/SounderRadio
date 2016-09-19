@@ -21,6 +21,7 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
   private _progressTimer: any;
   private _songList: any[];
   public ControlTypes = ControlTypes;
+  public playerHistory: any[] = [];
   public isPlaying: boolean = true;
   public song: any;
   public songProgressPercent: number = 0;
@@ -42,6 +43,7 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
         this.changeVolume(this.volume);
         this._getSongList();
         this._addRadioToHistory();
+        this.playerHistory.push(this.song);
     });
     this._player.on(SoundcloudWidget.events.FINISH, () => {
       this._addSongToHistory();
@@ -160,6 +162,7 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
         this.song = nextSong;
         this.isPlaying = true;
         this._toasterService.pop('', 'Now Playing', this.song.title);
+        this.playerHistory.push(this.song);
       });
   }
 

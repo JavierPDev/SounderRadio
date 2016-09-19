@@ -42,10 +42,12 @@
       [(ngModel)]="volume"
       (ngModelChange)="changeVolume($event)">
     <div class="d-inline-block">
-      <div (click)="changeVolume(volume + 10)" class="radio-player__volume-up" title="Increase volume">
+      <div (click)="changeVolume(volume + 10)" class="radio-player__volume-up"
+        title="Increase volume">
         <i class="fa fa-plus"></i>
       </div>
-      <div (click)="changeVolume(volume - 10)" class="radio-player__volume-down" title="Decrease volume">
+      <div (click)="changeVolume(volume - 10)" class="radio-player__volume-down"
+        title="Decrease volume">
         <i class="fa fa-minus"></i>
       </div>
     </div>
@@ -67,24 +69,49 @@
   src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/274513784&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true">
 </iframe>
 
-<br>
-<button *ngIf="isControlTypeSetTo(ControlTypes.Soundcloud)"
-  (click)="setControlType(ControlTypes.Simple)" class="btn btn-secondary">
-  Use simple interface with volume and radio controls
-</button>
-<button *ngIf="isControlTypeSetTo(ControlTypes.Simple)"
-  (click)="setControlType(ControlTypes.Soundcloud)" class="btn btn-secondary">
-  Use default soundcloud interface
-</button>
+<div class="radio-player__misc">
+  <div class="row">
+    <div class="col-xs-8">
+      <div class="text-block">
+        <h4>Songs Played</h4>
+        <div class="radio-player__history ">
+          <a *ngFor="let song of playerHistory.reverse().slice(1)" 
+              [routerLink]="['/radio', song.id]" 
+              title="Click to play song radio"
+              class="history-item">
+            <img class="history-item__image"
+              src="{{song.artwork_url || '/assets/headphones.jpg'}}"
+              alt="Album art">
+            <div class="history-item__link">
+              {{song.title}}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="text-block">
+        <h4>Keyboard shortcuts</h4>
+        <dl>
+          <dt>Play/Pause</dt>
+          <dd>Spacebar</dd>
+          <dt>Change volume</dt>
+          <dd>Up/Down Arrow</dd>
+          <dt>Skip song</dt>
+          <dd>Right Arrow</dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
 
-<div class="text-block d-inline-block pull-xs-right">
-  <h4>Keyboard shortcuts</h4>
-	<dl>
-		<dt>Play/Pause</dt>
-		<dd>Spacebar</dd>
-		<dt>Change volume</dt>
-		<dd>Up/Down Arrow</dd>
-		<dt>Skip song</dt>
-		<dd>Right Arrow</dd>
-	</dl>
+<div class="radio-player__ui-changer">
+  <button *ngIf="isControlTypeSetTo(ControlTypes.Soundcloud)"
+    (click)="setControlType(ControlTypes.Simple)" class="btn btn-secondary">
+    Use simple interface with volume and radio controls
+  </button>
+  <button *ngIf="isControlTypeSetTo(ControlTypes.Simple)"
+    (click)="setControlType(ControlTypes.Soundcloud)" class="btn btn-secondary">
+    Use default soundcloud interface
+  </button>
 </div>

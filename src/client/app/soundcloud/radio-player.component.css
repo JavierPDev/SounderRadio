@@ -93,3 +93,39 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
+.radio-player__misc {
+  margin-top: 10px;
+}
+
+.radio-player__ui-changer {
+  clear: both;
+  display: block;
+  float: right;
+  margin-top: 20px;
+}
+
+.radio-player__history {
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.history-item {
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  vertical-align: top;
+  width: 150px;
+}
+
+.history-item__image {
+  width: 100%;
+}
+
+.history-item__link {
+  color: #fff;
+  margin-top: -10px;
+  white-space: pre-line;
+  width: 150px;
+}
