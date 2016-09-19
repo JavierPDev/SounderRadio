@@ -4,18 +4,24 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
+import { FavoritesModule } from '../favorites/favorites.module';
 import { SongCardComponent } from './song-card.component';
 import { SearchComponent } from './search.component';
 import { SearchPageComponent } from './search-page.component';
 import { RadioPageComponent } from './radio-page.component';
 import { RadioPlayerComponent } from './radio-player.component';
 import { RadioPlayerHistoryComponent } from './radio-player-history.component';
-import { FavoriteToggleComponent } from './favorite-toggle.component';
 import { SoundcloudService } from './soundcloud.service';
 import { DurationPipe } from './duration.pipe';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, RouterModule, MomentModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    MomentModule,
+    FavoritesModule
+  ],
   declarations: [
     SongCardComponent,
     SearchComponent,
@@ -23,7 +29,6 @@ import { DurationPipe } from './duration.pipe';
     RadioPageComponent,
     RadioPlayerComponent,
     RadioPlayerHistoryComponent,
-    FavoriteToggleComponent,
     DurationPipe
   ],
   exports: [
