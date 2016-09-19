@@ -1,8 +1,8 @@
 # Introduction
 
-SounderProject is a simple radio web app using [Soundcloud](http://soundcloud.com). It is built using Angular2 with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. SounderProject is a work in process.
+Sounder Radio is a simple radio web app powered by [Soundcloud](http://soundcloud.com) HTTP and widget APIs. It is built using Angular2 with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. Sounder Radio is a work in process.
 
-SounderProject uses the following dependencies:
+Sounder Radio uses the following dependencies:
 
 - [Momentjs](http://momentjs.com)
 - [Angular2Moment](https://github.com/urish/angular2-moment)
@@ -22,8 +22,8 @@ SounderProject uses the following dependencies:
 
 
 ```bash
-git clone https://github.com/JavierPDev/SounderProject.git
-cd SounderProject
+git clone https://github.com/JavierPDev/SounderRadio.git
+cd SounderRadio
 # install the project's dependencies
 npm install
 # watches your files and uses livereload by default
