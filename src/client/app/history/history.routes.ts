@@ -1,9 +1,9 @@
 import { Route } from '@angular/router';
-import { HistoryComponent } from './history.component';
+import { HistoryPageComponent } from './history-page.component';
 
 export const HistoryRoutes: Route[] = [
   {
     path: 'history',
-    component: HistoryComponent
+    component: HistoryPageComponent
   }
 ];
