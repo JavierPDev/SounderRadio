@@ -66,7 +66,8 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
     radioHistory.push({
       title: this.radio.title,
       id: this.radio.id,
-      artwork_url: this.radio.artwork_url
+      artwork_url: this.radio.artwork_url,
+      addedAt: new Date()
     });
     localStorage.radioHistory = JSON.stringify(radioHistory);
   }
@@ -79,7 +80,8 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
     songHistory.push({
       title: this.song.title,
       id: this.song.id,
-      artwork_url: this.song.artwork_url
+      artwork_url: this.song.artwork_url,
+      addedAt: new Date()
     });
     localStorage.songHistory = JSON.stringify(songHistory);
   }

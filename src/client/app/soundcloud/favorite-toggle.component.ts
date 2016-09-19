@@ -43,7 +43,8 @@ export class FavoriteToggleComponent implements OnInit {
     favorites.push({
       title: this.radio.title,
       id: this.radio.id,
-      artwork_url: this.radio.artwork_url
+      artwork_url: this.radio.artwork_url,
+      addedAt: new Date()
     });
     this._saveFavorites(favorites);
     this.isFavorite = true;
