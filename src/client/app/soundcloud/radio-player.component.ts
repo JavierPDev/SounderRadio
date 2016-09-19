@@ -41,7 +41,7 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
         this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
         this._getSongList();
-        this._addRadiotoHistory();
+        this._addRadioToHistory();
     });
     this._player.on(SoundcloudWidget.events.FINISH, () => {
       this._addSongToHistory();
@@ -55,12 +55,17 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
     this._unbindKeyboardShortcuts();
   }
 
-  private _addRadiotoHistory(): void {
+  private _addRadioToHistory(): void {
     let radioHistory = localStorage.radioHistory ? 
       JSON.parse(localStorage.radioHistory) : [];
+    let lastRadioStation = radioHistory[radioHistory.length - 1];
     // Don't save radio station if it was last played
-    if (this.radio.id === radioHistory[radioHistory.length - 1].id) return;
-    radioHistory.push(this.radio);
+    if (lastRadioStation && this.radio.id === lastRadioStation.id) return;
+    radioHistory.push({
+      title: this.radio.title,
+      id: this.radio.id,
+      artwork_url: this.radio.artwork_url
+    });
     localStorage.radioHistory = JSON.stringify(radioHistory);
   }
 
@@ -69,7 +74,11 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
       JSON.parse(localStorage.songHistory) : [];
     // Tag with radio title for song history filtering
     this.song.radioStation = this.radio.title;
-    songHistory.push(this.song);
+    songHistory.push({
+      title: this.song.title,
+      id: this.song.id,
+      artwork_url: this.song.artwork_url
+    });
     localStorage.songHistory = JSON.stringify(songHistory);
   }
 
