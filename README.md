@@ -1,6 +1,6 @@
 # Introduction
 
-Sounder Radio is a simple radio web app powered by [Soundcloud](http://soundcloud.com) HTTP and widget APIs. It is built using Angular2 with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. Sounder Radio is a work in process.
+Sounder Radio is a simple radio web app powered by [Soundcloud](http://soundcloud.com) HTTP and widget APIs. It is built using [Angular2](http://angular.io) with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. Sounder Radio is a work in process.
 
 Sounder Radio uses the following dependencies:
 
