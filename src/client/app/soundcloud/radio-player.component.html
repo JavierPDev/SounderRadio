@@ -74,19 +74,8 @@
     <div class="col-xs-8">
       <div class="text-block">
         <h4>Songs Played</h4>
-        <div class="radio-player__history ">
-          <a *ngFor="let song of playerHistory.reverse().slice(1)" 
-              [routerLink]="['/radio', song.id]" 
-              title="Click to play song radio"
-              class="history-item">
-            <img class="history-item__image"
-              src="{{song.artwork_url || '/assets/headphones.jpg'}}"
-              alt="Album art">
-            <div class="history-item__link">
-              {{song.title}}
-            </div>
-          </a>
-        </div>
+        <sp-radio-player-history [songs]="playerHistory">
+        </sp-radio-player-history>
       </div>
     </div>
     <div class="col-xs-4">

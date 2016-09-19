@@ -9,6 +9,7 @@ import { SearchComponent } from './search.component';
 import { SearchPageComponent } from './search-page.component';
 import { RadioPageComponent } from './radio-page.component';
 import { RadioPlayerComponent } from './radio-player.component';
+import { RadioPlayerHistoryComponent } from './radio-player-history.component';
 import { SoundcloudService } from './soundcloud.service';
 import { DurationPipe } from './duration.pipe';
 
@@ -20,6 +21,7 @@ import { DurationPipe } from './duration.pipe';
     SearchPageComponent,
     RadioPageComponent,
     RadioPlayerComponent,
+    RadioPlayerHistoryComponent,
     DurationPipe
   ],
   exports: [
