@@ -1,6 +1,6 @@
 {
-  "name": "Sounder Radio",
-  "version": "0.0.0",
+  "name": "SounderRadio",
+  "version": "0.1.0",
   "description": "Online radio powered by SoundCloud http and widget api",
   "repository": {
     "url": "https://github.com/JavierPDev/SounderRadio"
