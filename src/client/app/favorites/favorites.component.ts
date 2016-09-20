@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { FavoritesService } from './favorites.service';
+import { FavoritesService } from './index';
 
 @Component({
   moduleId: module.id,

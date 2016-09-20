@@ -37,5 +37,3 @@ export class SearchComponent implements OnInit {
     document.body.classList.remove(this._cssClass);
   }
 }
-
-

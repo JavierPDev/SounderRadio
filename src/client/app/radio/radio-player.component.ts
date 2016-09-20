@@ -3,7 +3,7 @@ import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import * as SoundcloudWidget from 'soundcloud-widget';
 
 import { ControlTypes, Keycodes } from './index';
-import { SoundcloudService } from '../song/soundcloud.service';
+import { SoundcloudService } from '../song/index';
 
 @Component({
   moduleId: module.id,

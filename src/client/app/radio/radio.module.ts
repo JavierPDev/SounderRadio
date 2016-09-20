@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
-import { FavoritesModule } from '../favorites/favorites.module';
+import { FavoritesModule } from '../favorites/index';
 import { SongModule } from '../song/song.module';
 import {
   RadioComponent,

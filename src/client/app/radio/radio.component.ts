@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
-import { SoundcloudService } from '../song/soundcloud.service';
+import { SoundcloudService } from '../song/index';
 
 @Component({
   moduleId: module.id,

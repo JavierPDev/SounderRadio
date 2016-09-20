@@ -3,9 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
-import { FavoritesComponent } from './favorites.component';
-import { FavoriteToggleComponent } from './favorite-toggle.component';
-import { FavoritesService } from './favorites.service';
+import {
+  FavoritesComponent,
+  FavoriteToggleComponent,
+  FavoritesService
+} from './index';
 
 @NgModule({
   imports: [CommonModule, RouterModule, MomentModule],
