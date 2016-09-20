@@ -10,9 +10,12 @@ export class ProjectConfig extends SeedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
 
+  SOUNDCLOUD_CLIENT_ID = '';
+
   constructor() {
     super();
     this.APP_TITLE = 'Sounder Radio';
+
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     this.TYPED_COMPILE_INTERVAL = 5;

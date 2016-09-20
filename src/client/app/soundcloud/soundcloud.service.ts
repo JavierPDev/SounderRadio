@@ -4,7 +4,7 @@ import { Http, URLSearchParams } from '@angular/http';
 @Injectable()
 export class SoundcloudService {
   public basePath: string = 'https://api.soundcloud.com/tracks';
-  private _clientId: string = '8159b4b99151c48d6aaf6770853bfd7a';
+  private _clientId: string = String('<%= SOUNDCLOUD_CLIENT_ID %>');
 
   constructor(private _http: Http) {
   }
