@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 import { FavoritesService } from './favorites.service';
 
@@ -8,14 +8,16 @@ import { FavoritesService } from './favorites.service';
   templateUrl: 'favorite-toggle.component.html',
   styleUrls: ['favorite-toggle.component.css']
 })
-export class FavoriteToggleComponent implements OnInit {
+export class FavoriteToggleComponent implements OnChanges {
   public isFavorite: boolean;
   @Input() radio;
 
   constructor(private _favoritesService: FavoritesService) {
   }
 
-  ngOnInit() {
+  ngOnChanges(changes) {
+    // Get initial radio and subsequent changed radios on same page navigation
+    this.radio = changes.radio.currentValue;
     this.isFavorite = this._getIsFavorite();
   }
 

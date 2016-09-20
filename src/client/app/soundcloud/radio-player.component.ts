@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import * as SoundcloudWidget from 'soundcloud-widget';
 
@@ -12,7 +12,7 @@ import { SoundcloudService } from './soundcloud.service';
   templateUrl: 'radio-player.component.html',
   styleUrls: ['radio-player.component.css']
 })
-export class RadioPlayerComponent implements OnInit, OnDestroy {
+export class RadioPlayerComponent implements OnChanges, OnDestroy {
   @Input() radio;
   private _controlType: number = localStorage.controlType || ControlTypes.Simple;
   private _defaultSongOptions: any = { auto_play: true };
@@ -32,7 +32,9 @@ export class RadioPlayerComponent implements OnInit, OnDestroy {
              private _toasterService: ToasterService) {
   }
 
-  ngOnInit() {
+  ngOnChanges(changes) {
+    // Get initial radio and subsequent changed radios on same page navigation
+    this.radio = changes.radio.currentValue;
     // Initialize radio using chosen song
     this.song = this.radio;
     let url = `${this._soundcloudService.basePath}/${this.song.id}`;
