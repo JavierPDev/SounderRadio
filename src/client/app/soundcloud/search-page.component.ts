@@ -12,7 +12,7 @@ import { SoundcloudService } from './soundcloud.service';
 })
 export class SearchPageComponent implements OnInit {
   private _cssClass: string = 'plain-background';
-  public results: any[];
+  public results: any[] = [];
   public searchCompleted: boolean = false;
   public searchTerm: string;
 
