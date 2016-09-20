@@ -12,7 +12,7 @@ Sounder Radio uses the following dependencies:
 
 # Live Demo
 
-[Go here](http://sounderproject.surge.sh) to see it in action.
+[Go here](http://sounderradio.com) to see it in action.
 
 # How to start
 
