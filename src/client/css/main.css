@@ -46,6 +46,8 @@ body {
 
   color: #fff;
   font-size: 36px;
+}
+.center-view {
 	position: absolute;
 	top: 45%;
 	left: 47%;

@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+.center-album {
+  padding: 25px 75px;
+}
+
 .radio-player {
   background-color: rgba(0, 0, 0, .7);
   color: #fff;
