@@ -7,6 +7,10 @@ export class SoundcloudService {
   private _clientId: string = String('<%= SOUNDCLOUD_CLIENT_ID %>');
 
   constructor(private _http: Http) {
+    if (!this._cliendId) {
+      throw new Error(`SoundCloud client id is required. Please attain one and 
+                      enter it in /tools/config/project.config.ts`);
+    }
   }
 
   public getTrack(trackId: number) {
