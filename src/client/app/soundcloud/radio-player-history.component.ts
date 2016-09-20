@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   moduleId: module.id,
@@ -6,11 +6,14 @@ import { Component, Input } from '@angular/core';
   templateUrl: 'radio-player-history.component.html',
   styleUrls: ['radio-player-history.component.css']
 })
-export class RadioPlayerHistoryComponent {
+export class RadioPlayerHistoryComponent implements OnChanges {
   @Input() songs;
 
   constructor() {
   }
+  
+  ngOnChanges(changes) {
+    // Order starting with last added and don't show current song
+    this.songs = changes.songs.currentValue.reverse().slice(1);
+  }
 }
-
-
