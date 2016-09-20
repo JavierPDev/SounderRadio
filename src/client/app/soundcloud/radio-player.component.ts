@@ -38,6 +38,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
       this._player = new SoundcloudWidget('soundcloud');
     } else {
       this._player.pause();
+      this.songProgressMs = 0;
+      this.songProgressPercent = 0;
     }
     // Get initial radio and subsequent changed radios on same page navigation
     this.radio = changes.radio.currentValue;
