@@ -13,7 +13,6 @@ export class RadioPlayerHistoryComponent implements OnChanges {
   }
   
   ngOnChanges(changes) {
-    // Order starting with last added and don't show current song
-    this.songs = changes.songs.currentValue.reverse().slice(1);
+    this.songs = changes.songs.currentValue;
   }
 }

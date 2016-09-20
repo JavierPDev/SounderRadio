@@ -33,12 +33,17 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes) {
+    // Initialize the widget on component init, else pause player to await song
+    if (!changes.radio.previousValue.id) {
+      this._player = new SoundcloudWidget('soundcloud');
+    } else {
+      this._player.pause();
+    }
     // Get initial radio and subsequent changed radios on same page navigation
     this.radio = changes.radio.currentValue;
     // Initialize radio using chosen song
     this.song = this.radio;
     let url = `${this._soundcloudService.basePath}/${this.song.id}`;
-    this._player = new SoundcloudWidget('soundcloud');
     this._player.load(url, this._defaultSongOptions)
       .then(() => {
         this._player.getCurrentSound().then(sound => this.song = sound);
@@ -46,8 +51,6 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this._player.play();
         this._getSongList();
         this._addRadioToHistory();
-        // Force reference change for history component's onChanges()
-        this.playerHistory = [...this.playerHistory, this.song];
     });
     this._player.on(SoundcloudWidget.events.FINISH, () => {
       this._addSongToHistory();
@@ -162,6 +165,9 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
     this._nextSongIndex++;
     this._player.load(nextSong.uri, this._defaultSongOptions)
       .then(() => {
+        // Force reference change for history component's onChanges()
+        // and put latest song first
+        this.playerHistory = [this.song].concat(this.playerHistory);
         this.changeVolume(this.volume);
         this._player.play();
         this.songProgressMs = 0;
@@ -169,8 +175,6 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this.song = nextSong;
         this.isPlaying = true;
         this._toasterService.pop('', 'Now Playing', this.song.title);
-        // Force reference change for history component's onChanges()
-        this.playerHistory = [...this.playerHistory, this.song];
       });
   }
 
