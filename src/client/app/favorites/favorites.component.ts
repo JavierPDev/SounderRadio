@@ -4,11 +4,11 @@ import { FavoritesService } from './favorites.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-favorites-page',
-  templateUrl: 'favorites-page.component.html',
-  styleUrls: ['favorites-page.component.css']
+  selector: 'sp-favorites',
+  templateUrl: 'favorites.component.html',
+  styleUrls: ['favorites.component.css']
 })
-export class FavoritesPageComponent implements OnInit {
+export class FavoritesComponent implements OnInit {
   public favorites: any[];
 
   constructor(private _favoritesService: FavoritesService) {

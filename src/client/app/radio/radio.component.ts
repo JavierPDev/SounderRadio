@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
-import { SoundcloudService } from './soundcloud.service';
+import { SoundcloudService } from '../song/soundcloud.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-radio-page',
-  templateUrl: 'radio-page.component.html',
-  styleUrls: ['radio-page.component.css']
+  selector: 'sp-radio',
+  templateUrl: 'radio.component.html',
+  styleUrls: ['radio.component.css']
 })
-export class RadioPageComponent implements OnInit {
+export class RadioComponent implements OnInit {
   public radio: any;
 
   constructor(private _activatedRoute: ActivatedRoute, 

@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-search',
-  templateUrl: 'search.component.html',
-  styleUrls: ['search.component.css'],
+  selector: 'sp-search-box',
+  templateUrl: 'search-box.component.html',
+  styleUrls: ['search-box.component.css'],
 })
-export class SearchComponent {
+export class SearchBoxComponent {
   @Input() searchTerm: string;
   @Input() clearAfterSubmission: boolean;
 

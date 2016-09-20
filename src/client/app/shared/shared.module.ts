@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { SoundcloudModule } from '../soundcloud/soundcloud.module';
-import { NavbarComponent } from './navbar/index';
-
-/**
- * Do not specify providers for modules that might be imported by a lazy loaded module.
- */
+import { SongModule } from '../song/song.module';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, SoundcloudModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SongModule
+  ],
   declarations: [NavbarComponent],
   exports: [NavbarComponent,
     CommonModule, FormsModule, RouterModule]

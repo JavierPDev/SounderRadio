@@ -10,7 +10,8 @@ import { routes } from './app.routes';
 import { AboutModule } from './about/about.module';
 import { HomeModule } from './home/home.module';
 import { HistoryModule } from './history/history.module';
-import { SoundcloudModule } from './soundcloud/soundcloud.module';
+import { SongModule } from './song/song.module';
+import { RadioModule } from './radio/radio.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from './shared/shared.module';
     AboutModule,
     HomeModule,
     HistoryModule,
-    SoundcloudModule,
+    SongModule,
+    RadioModule,
     SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [{

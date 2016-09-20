@@ -1,10 +1,10 @@
 import { Route } from '@angular/router';
 
-import { FavoritesPageComponent } from './favorites-page.component';
+import { FavoritesComponent } from './index';
 
 export const FavoritesRoutes: Route[] = [
   {
     path: 'favorites',
-    component: FavoritesPageComponent
+    component: FavoritesComponent
   }
 ];

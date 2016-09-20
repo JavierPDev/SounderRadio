@@ -3,3 +3,4 @@
  */
 export * from './navbar/index';
 export * from './config/env.config';
+export * from './shared.module';

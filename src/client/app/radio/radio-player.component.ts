@@ -2,9 +2,8 @@ import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import * as SoundcloudWidget from 'soundcloud-widget';
 
-import { ControlTypes } from './radio-control-types.enum';
-import { Keycodes } from './keycodes.enum';
-import { SoundcloudService } from './soundcloud.service';
+import { ControlTypes, Keycodes } from './index';
+import { SoundcloudService } from '../song/soundcloud.service';
 
 @Component({
   moduleId: module.id,

@@ -10,7 +10,7 @@ export class ProjectConfig extends SeedConfig {
 
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
 
-  SOUNDCLOUD_CLIENT_ID = '';
+  SOUNDCLOUD_CLIENT_ID = '8159b4b99151c48d6aaf6770853bfd7a';
 
   constructor() {
     super();

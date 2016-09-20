@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
-import { HistoryPageComponent } from './history-page.component';
+import { HistoryComponent } from './index';
 
 @NgModule({
   imports: [CommonModule, RouterModule, MomentModule],
-  declarations: [HistoryPageComponent],
+  declarations: [HistoryComponent],
   exports: []
 })
 export class HistoryModule { }

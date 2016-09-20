@@ -6,11 +6,11 @@ import { SoundcloudService } from './soundcloud.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-search-page',
-  templateUrl: 'search-page.component.html',
-  styleUrls: ['search-page.component.css'],
+  selector: 'sp-search',
+  templateUrl: 'search.component.html',
+  styleUrls: ['search.component.css'],
 })
-export class SearchPageComponent implements OnInit {
+export class SearchComponent implements OnInit {
   private _cssClass: string = 'plain-background';
   public results: any[] = [];
   public searchCompleted: boolean = false;
