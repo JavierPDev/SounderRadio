@@ -15,7 +15,7 @@ export class ProjectConfig extends SeedConfig {
     this.APP_TITLE = 'Sounder Radio';
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
-    // this.TYPED_COMPILE_INTERVAL = 5;
+    this.TYPED_COMPILE_INTERVAL = 5;
 
     // Add `NPM` third-party libraries to be injected/bundled.
     this.NPM_DEPENDENCIES = [
