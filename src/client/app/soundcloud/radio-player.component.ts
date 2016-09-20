@@ -23,6 +23,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   public ControlTypes = ControlTypes;
   public playerHistory: any[] = [];
   public isPlaying: boolean = true;
+  public loading: boolean = false;
   public song: any;
   public songProgressPercent: number = 0;
   public songProgressMs: number = 0;
@@ -37,6 +38,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
     if (!changes.radio.previousValue.id) {
       this._player = new SoundcloudWidget('soundcloud');
     } else {
+      this.loading = true;
       this._player.pause();
       this.songProgressMs = 0;
       this.songProgressPercent = 0;
@@ -50,6 +52,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
       .then(() => {
         this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
+        this.loading = false;
         this._player.play();
         this._getSongList();
         this._addRadioToHistory();
@@ -165,12 +168,15 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   public playNextSong = ():void => {
     let nextSong = this._songList[this._nextSongIndex];
     this._nextSongIndex++;
+    this._player.pause();
+    this.loading = true;
     this._player.load(nextSong.uri, this._defaultSongOptions)
       .then(() => {
         // Force reference change for history component's onChanges()
         // and put latest song first
         this.playerHistory = [this.song].concat(this.playerHistory);
         this.changeVolume(this.volume);
+        this.loading = false;
         this._player.play();
         this.songProgressMs = 0;
         this.songProgressPercent = 0;
