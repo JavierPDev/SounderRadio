@@ -15,7 +15,7 @@ import { SoundcloudService } from './soundcloud.service';
 export class RadioPlayerComponent implements OnChanges, OnDestroy {
   @Input() radio;
   private _controlType: number = localStorage.controlType || ControlTypes.Simple;
-  private _defaultSongOptions: any = { auto_play: true };
+  private _defaultSongOptions: any = { auto_play: false };
   private _nextSongIndex: number = 0;
   private _player: any;
   private _progressTimer: any;
@@ -43,6 +43,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
       .then(() => {
         this._player.getCurrentSound().then(sound => this.song = sound);
         this.changeVolume(this.volume);
+        this._player.play();
         this._getSongList();
         this._addRadioToHistory();
         this.playerHistory.push(this.song);
@@ -161,6 +162,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
     this._player.load(nextSong.uri, this._defaultSongOptions)
       .then(() => {
         this.changeVolume(this.volume);
+        this._player.play();
         this.songProgressMs = 0;
         this.songProgressPercent = 0;
         this.song = nextSong;
