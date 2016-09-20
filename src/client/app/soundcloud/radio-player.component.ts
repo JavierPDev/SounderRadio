@@ -46,7 +46,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this._player.play();
         this._getSongList();
         this._addRadioToHistory();
-        this.playerHistory.push(this.song);
+        // Force reference change for history component's onChanges()
+        this.playerHistory = [...this.playerHistory, this.song];
     });
     this._player.on(SoundcloudWidget.events.FINISH, () => {
       this._addSongToHistory();
@@ -168,7 +169,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this.song = nextSong;
         this.isPlaying = true;
         this._toasterService.pop('', 'Now Playing', this.song.title);
-        this.playerHistory.push(this.song);
+        // Force reference change for history component's onChanges()
+        this.playerHistory = [...this.playerHistory, this.song];
       });
   }
 

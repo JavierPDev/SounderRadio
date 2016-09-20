@@ -1,6 +1,5 @@
 <div class="history">
-  <!-- Reverse to order by last played and slice to skip current song -->
-  <a *ngFor="let song of songs.reverse().slice(1)" 
+  <a *ngFor="let song of songs" 
       [routerLink]="['/radio', song.id]" 
       title="Click to play song radio"
       class="history__item">
