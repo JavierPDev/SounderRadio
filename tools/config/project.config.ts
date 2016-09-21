@@ -16,6 +16,32 @@ export class ProjectConfig extends SeedConfig {
     super();
     this.APP_TITLE = 'Sounder Radio';
 
+    // Dependencies
+		this.SYSTEM_CONFIG_DEV.paths['moment'] =
+      `node_modules/moment/moment.js`;
+
+		this.SYSTEM_CONFIG_DEV.paths['angular2-moment'] =
+      `node_modules/angular2-moment/index.js`;
+
+		this.SYSTEM_CONFIG_DEV.paths['angular2-toaster'] =
+      `node_modules/angular2-toaster/angular2-toaster.js`;
+
+
+    this.SYSTEM_BUILDER_CONFIG.packages['moment'] = {
+			main: 'moment.js',
+			defaultExtension : 'js'
+    }
+
+    this.SYSTEM_BUILDER_CONFIG.packages['angular2-moment'] = {
+			main: 'index.js',
+			defaultExtension : 'js'
+    }
+
+    this.SYSTEM_BUILDER_CONFIG.packages['angular2-toaster'] = {
+			main: 'angular2-toaster.js',
+			defaultExtension : 'js'
+    }
+
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     this.TYPED_COMPILE_INTERVAL = 5;

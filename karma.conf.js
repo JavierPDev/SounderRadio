@@ -45,6 +45,7 @@ module.exports = function (config) {
       { pattern: 'node_modules/@angular/**/*.js.map', included: false, watched: false },
 
       // Other dependencies
+      { pattern: 'node_modules/moment/*.js', included: false, watched: false },
       { pattern: 'node_modules/angular2-moment/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/angular2-toaster/**/*.js', included: false, watched: false },
 
