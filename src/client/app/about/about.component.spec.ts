@@ -18,7 +18,7 @@ export function main() {
       });
     });
 
-    it('should work',
+    it('should have correct links',
       async(() => {
         TestBed
           .compileComponents()
@@ -26,7 +26,11 @@ export function main() {
             let fixture = TestBed.createComponent(TestComponent);
             let aboutDOMEl = fixture.debugElement.children[0].nativeElement;
 
-	          expect(aboutDOMEl.querySelectorAll('h2')[0].textContent).toEqual('Features');
+	          // expect(aboutDOMEl.querySelectorAll('h1')[0].textContent).toEqual('About');
+	          expect(aboutDOMEl.querySelectorAll('a')[0].href).toEqual('http://soundcloud.com/');
+	          expect(aboutDOMEl.querySelectorAll('a')[1].href).toEqual('http://angular.io/');
+	          expect(aboutDOMEl.querySelectorAll('a')[2].href).toEqual('https://github.com/mgechev/angular2-seed');
+	          expect(aboutDOMEl.querySelectorAll('a')[3].href).toEqual('https://github.com/JavierPDev/SounderRadio');
           });
         }));
     });
@@ -34,6 +38,6 @@ export function main() {
 
 @Component({
   selector: 'test-cmp',
-  template: '<sd-about></sd-about>'
+  template: '<sp-about></sp-about>'
 })
 class TestComponent {}
