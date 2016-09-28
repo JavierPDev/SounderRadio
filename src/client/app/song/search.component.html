@@ -1,6 +1,6 @@
 <div class="container container--base">
   <div class="row">
-    <sp-search-box [searchTerm]="searchTerm"></sp-search-box>
+    <sp-search-box [searchTerm]="searchTerm" class="search__search-box"></sp-search-box>
   </div>
   <div class="row search-results">
     <div *ngIf="!results.length && searchCompleted" class="alert alert-info">

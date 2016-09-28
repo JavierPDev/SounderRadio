@@ -22,10 +22,12 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     document.body.classList.add(this._cssClass);
+    let inputEl = document.querySelector('.search__search-box .search__input');
     this._activatedRoute.params.subscribe(params => {
       this.searchTerm = params.searchTerm;
       this._soundcloudService.search(this.searchTerm)
         .subscribe(res => {
+          inputEl.focus();
           this.searchCompleted = true;
           this.results = res.json();
         },
