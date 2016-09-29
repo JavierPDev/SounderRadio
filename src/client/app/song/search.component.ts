@@ -31,7 +31,8 @@ export class SearchComponent implements OnInit {
           this.searchCompleted = true;
           this.results = res.json();
         },
-          err => this._toasterService.pop('error', 'Error', err));
+          err => this._toasterService.pop('error', 'Error', err)
+        );
     });
   }
 

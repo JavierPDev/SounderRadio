@@ -108,7 +108,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
       .subscribe(res => {
         this._songList = this._soundcloudService.shuffleSongList(res.json());
       },
-        err => this._toasterService.pop('error', 'Error', err));
+        err => this._toasterService.pop('error', 'Error', err)
+      );
   }
 
   private _keydownEventHandler = (event: any):void => {
