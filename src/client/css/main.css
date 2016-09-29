@@ -7,6 +7,7 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  padding-top: 100px;
 }
 
 .plain-background {
@@ -14,8 +15,9 @@ body {
   background-image: none;
 }
 
-.container--base {
-  margin-top: 100px;
+.scroll {
+  height: 500px;
+  overflow-y: auto;
 }
 
 .text-block {

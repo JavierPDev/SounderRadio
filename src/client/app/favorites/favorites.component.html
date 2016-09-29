@@ -1,4 +1,4 @@
-<div class="container container--base">
+<div class="container">
   <div class="col-xs-8 offset-xs-2">
     <h2 class="text-block">
       <i class="fa fa-heart"></i> 
@@ -8,10 +8,12 @@
       <div *ngIf="!favorites.length">
         No favorite stations yet.
       </div>
-      <div *ngFor="let radioStation of favorites.slice(0, 100).reverse()">
-        <a [routerLink]="['/radio', radioStation.id]" class="favorite-play">
-          {{radioStation.title}} <em>(added {{ radioStation.addedAt | amTimeAgo }})</em>
-        </a>
+      <div class="scroll">
+        <div *ngFor="let radioStation of favorites.slice(0, 100).reverse()">
+          <a [routerLink]="['/radio', radioStation.id]" class="favorite-play">
+            {{radioStation.title}} <em>(added {{ radioStation.addedAt | amTimeAgo }})</em>
+          </a>
+        </div>
       </div>
     </div>
   </div>
