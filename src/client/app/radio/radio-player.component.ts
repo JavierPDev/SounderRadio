@@ -33,11 +33,11 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes) {
+    this.loading = true;
     // Initialize the widget on component init, else pause player to await song
     if (!changes.radio.previousValue.id) {
       this._player = new SoundcloudWidget('soundcloud');
     } else {
-      this.loading = true;
       this._player.pause();
       this.songProgressMs = 0;
       this.songProgressPercent = 0;
