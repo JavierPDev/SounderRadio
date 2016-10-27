@@ -11,10 +11,10 @@ import { SoundcloudService } from './soundcloud.service';
   styleUrls: ['search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  private _cssClass: string = 'plain-background';
   public results: any[] = [];
   public searchCompleted: boolean = false;
   public searchTerm: string;
+  private _cssClass: string = 'plain-background';
 
   constructor(private _activatedRoute: ActivatedRoute,
              private _soundcloudService: SoundcloudService,

@@ -8,8 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['search-box.component.css'],
 })
 export class SearchBoxComponent {
-  @Input() searchTerm: string;
   @Input() clearAfterSubmission: boolean;
+  @Input() searchTerm: string;
 
   constructor(private _router: Router) {}
 

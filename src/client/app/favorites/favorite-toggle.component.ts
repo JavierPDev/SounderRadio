@@ -15,25 +15,6 @@ export class FavoriteToggleComponent implements OnChanges {
   constructor(private _favoritesService: FavoritesService) {
   }
 
-  ngOnChanges(changes) {
-    // Get initial radio and subsequent changed radios on same page navigation
-    this.radio = changes.radio.currentValue;
-    this.isFavorite = this._getIsFavorite();
-  }
-
-  private _getIsFavorite(): boolean {
-    let isFavorite = false;
-    let favorites = this._favoritesService.getFavorites();
-    if (!favorites.length) return false;
-    for (let i = 0, l = favorites.length; i < l; i++) {
-      if (favorites[i].id === this.radio.id) {
-        isFavorite = true;
-        break;
-      }
-    }
-    return isFavorite;
-  }
-
   public addToFavorites(): void {
     let favorites = this._favoritesService.getFavorites();
     favorites.push({
@@ -56,6 +37,25 @@ export class FavoriteToggleComponent implements OnChanges {
         return;
       }
     });
+  }
+
+  ngOnChanges(changes) {
+    // Get initial radio and subsequent changed radios on same page navigation
+    this.radio = changes.radio.currentValue;
+    this.isFavorite = this._getIsFavorite();
+  }
+
+  private _getIsFavorite(): boolean {
+    let isFavorite = false;
+    let favorites = this._favoritesService.getFavorites();
+    if (!favorites.length) return false;
+    for (let i = 0, l = favorites.length; i < l; i++) {
+      if (favorites[i].id === this.radio.id) {
+        isFavorite = true;
+        break;
+      }
+    }
+    return isFavorite;
   }
 }
 

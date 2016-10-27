@@ -13,12 +13,6 @@ import { SoundcloudService } from '../song/index';
 })
 export class RadioPlayerComponent implements OnChanges, OnDestroy {
   @Input() radio;
-  private _controlType: number = localStorage.controlType || ControlTypes.Simple;
-  private _defaultSongOptions: any = { auto_play: false };
-  private _nextSongIndex: number = 0;
-  private _player: any;
-  private _progressTimer: any;
-  private _songList: any[];
   public ControlTypes = ControlTypes;
   public playerHistory: any[] = [];
   public isPlaying: boolean = true;
@@ -27,9 +21,63 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   public songProgressPercent: number = 0;
   public songProgressMs: number = 0;
   public volume: number = parseInt(localStorage.volume) || 50;
+  private _controlType: number = localStorage.controlType || ControlTypes.Simple;
+  private _defaultSongOptions: any = { auto_play: false };
+  private _nextSongIndex: number = 0;
+  private _player: any;
+  private _progressTimer: any;
+  private _songList: any[];
 
   constructor(private _soundcloudService: SoundcloudService,
              private _toasterService: ToasterService) {
+  }
+
+  public changeVolume(volume: number): void {
+    if (volume < 0) volume = 0;
+    if (volume > 100) volume = 100;
+    localStorage.volume = volume;
+    this.volume = volume;
+    this._player.setVolume(volume / 100);
+  }
+
+  public isControlTypeSetTo(controlType: number) {
+    return this._controlType == controlType;
+  }
+
+  public playNextSong = ():void => {
+    let nextSong = this._songList[this._nextSongIndex];
+    this._nextSongIndex++;
+    this._player.pause();
+    this.loading = true;
+    this._player.load(nextSong.uri, this._defaultSongOptions)
+      .then(() => {
+        // Force reference change for history component's onChanges()
+        // and put latest song first
+        this.playerHistory = [this.song].concat(this.playerHistory);
+        this.changeVolume(this.volume);
+        this.loading = false;
+        this._player.play();
+        this.songProgressMs = 0;
+        this.songProgressPercent = 0;
+        this.song = nextSong;
+        this.isPlaying = true;
+        this._toasterService.pop('', 'Now Playing', this.song.title);
+      });
+  }
+
+  public setControlType(controlType: number): void {
+    this._controlType = controlType;
+    localStorage.controlType = controlType;
+  }
+
+  public toggle():void {
+    this.isPlaying = !this.isPlaying;
+    this._player.toggle();
+    if (this.isPlaying) {
+      this._setProgressTimer();
+    } else {
+      this._unsetProgressTimer();
+    }
   }
 
   ngOnChanges(changes) {
@@ -151,54 +199,6 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
 
   private _unsetProgressTimer(): void {
     clearInterval(this._progressTimer);
-  }
-
-  public changeVolume(volume: number): void {
-    if (volume < 0) volume = 0;
-    if (volume > 100) volume = 100;
-    localStorage.volume = volume;
-    this.volume = volume;
-    this._player.setVolume(volume / 100);
-  }
-
-  public isControlTypeSetTo(controlType: number) {
-    return this._controlType == controlType;
-  }
-
-  public playNextSong = ():void => {
-    let nextSong = this._songList[this._nextSongIndex];
-    this._nextSongIndex++;
-    this._player.pause();
-    this.loading = true;
-    this._player.load(nextSong.uri, this._defaultSongOptions)
-      .then(() => {
-        // Force reference change for history component's onChanges()
-        // and put latest song first
-        this.playerHistory = [this.song].concat(this.playerHistory);
-        this.changeVolume(this.volume);
-        this.loading = false;
-        this._player.play();
-        this.songProgressMs = 0;
-        this.songProgressPercent = 0;
-        this.song = nextSong;
-        this.isPlaying = true;
-        this._toasterService.pop('', 'Now Playing', this.song.title);
-      });
-  }
-
-  public setControlType(controlType: number): void {
-    this._controlType = controlType;
-    localStorage.controlType = controlType;
-  }
-
-  public toggle():void {
-    this.isPlaying = !this.isPlaying;
-    this._player.toggle();
-    if (this.isPlaying) {
-      this._setProgressTimer();
-    } else {
-      this._unsetProgressTimer();
-    }
   }
 }
 
