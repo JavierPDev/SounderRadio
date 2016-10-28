@@ -3,7 +3,7 @@
     <img *ngIf="!loading" class="album-art__image" 
       src="{{song.artwork_url || '/assets/headphones.jpg'}}"
       alt="Album art">
-    <i *ngIf="loading" class="fa fa-spinner animate-spinner center-album"></i>
+    <i *ngIf="loading" class="fa fa-spinner fa-pulse center-album"></i>
   </div>
   <div class="d-inline-block">
     <h5>{{song.title}}</h5>
