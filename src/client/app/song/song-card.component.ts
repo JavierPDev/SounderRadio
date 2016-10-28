@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-song-card',
+  selector: 'sr-song-card',
   templateUrl: 'song-card.component.html',
   styleUrls: ['song-card.component.css']
 })

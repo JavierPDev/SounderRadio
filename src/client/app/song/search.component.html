@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <sp-search-box [searchTerm]="searchTerm" class="search__search-box"></sp-search-box>
+    <sr-search-box [searchTerm]="searchTerm" class="search__search-box"></sr-search-box>
   </div>
   <div class="row search-results">
     <div *ngIf="!results.length && searchCompleted" class="alert alert-info">
       No results
     </div>
     <div *ngFor="let song of results" class="col-sm-3">
-      <sp-song-card [searchTerm]="searchTerm" [song]="song"></sp-song-card>
+      <sr-song-card [searchTerm]="searchTerm" [song]="song"></sr-song-card>
     </div>
   </div>
 </div>

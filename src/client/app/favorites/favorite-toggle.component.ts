@@ -4,7 +4,7 @@ import { FavoritesService } from './index';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-favorite-toggle',
+  selector: 'sr-favorite-toggle',
   templateUrl: 'favorite-toggle.component.html',
   styleUrls: ['favorite-toggle.component.css']
 })

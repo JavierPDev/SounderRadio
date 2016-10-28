@@ -7,7 +7,7 @@ import { SoundcloudService } from '../song/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-radio-player',
+  selector: 'sr-radio-player',
   templateUrl: 'radio-player.component.html',
   styleUrls: ['radio-player.component.css']
 })

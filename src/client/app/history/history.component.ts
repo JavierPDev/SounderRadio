@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-history',
+  selector: 'sr-history',
   templateUrl: 'history.component.html',
   styleUrls: ['history.component.css'],
 })

@@ -5,7 +5,7 @@ import { Config } from './shared/index';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-app',
+  selector: 'sr-app',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
 })

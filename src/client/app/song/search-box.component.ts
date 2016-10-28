@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-search-box',
+  selector: 'sr-search-box',
   templateUrl: 'search-box.component.html',
   styleUrls: ['search-box.component.css'],
 })

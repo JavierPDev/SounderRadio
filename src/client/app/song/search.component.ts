@@ -6,7 +6,7 @@ import { SoundcloudService } from './soundcloud.service';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-search',
+  selector: 'sr-search',
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.css'],
 })

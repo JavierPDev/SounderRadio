@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
  */
 @Component({
   moduleId: module.id,
-  selector: 'sp-navbar',
+  selector: 'sr-navbar',
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css'],
 })

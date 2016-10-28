@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  selector: 'sp-home',
+  selector: 'sr-home',
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.css'],
 })

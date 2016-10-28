@@ -38,6 +38,6 @@ export function main() {
 
 @Component({
   selector: 'test-cmp',
-  template: '<sp-about></sp-about>'
+  template: '<sr-about></sr-about>'
 })
 class TestComponent {}
