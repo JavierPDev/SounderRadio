@@ -13,7 +13,7 @@ import { SoundcloudService } from '../song/index';
 })
 export class RadioPlayerComponent implements OnChanges, OnDestroy {
   @Input() radio;
-  public ControlTypes = ControlTypes;
+  public ControlTypes: number = ControlTypes;
   public playerHistory: any[] = [];
   public isPlaying: boolean = true;
   public loading: boolean = false;
@@ -35,6 +35,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   public changeVolume(volume: number): void {
     if (volume < 0) volume = 0;
     if (volume > 100) volume = 100;
+
     localStorage.volume = volume;
     this.volume = volume;
     this._player.setVolume(volume / 100);
@@ -45,10 +46,11 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   public playNextSong = ():void => {
-    let nextSong = this._songList[this._nextSongIndex];
+    const nextSong = this._songList[this._nextSongIndex];
     this._nextSongIndex++;
     this._player.pause();
     this.loading = true;
+
     this._player.load(nextSong.uri, this._defaultSongOptions)
       .then(() => {
         // Force reference change for history component's onChanges()
@@ -73,6 +75,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   public toggle():void {
     this.isPlaying = !this.isPlaying;
     this._player.toggle();
+
     if (this.isPlaying) {
       this._setProgressTimer();
     } else {
@@ -82,19 +85,25 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes) {
     this.loading = true;
+
     // Initialize the widget on component init, else pause player to await song
     if (!changes.radio.previousValue.id) {
       this._player = new SoundcloudWidget('soundcloud');
+      this._bindKeyboardShortcuts();
     } else {
       this._player.pause();
       this.songProgressMs = 0;
       this.songProgressPercent = 0;
     }
+
     // Get initial radio and subsequent changed radios on same page navigation
     this.radio = changes.radio.currentValue;
+
     // Initialize radio using chosen song
     this.song = this.radio;
-    let url = `${this._soundcloudService.basePath}/${this.song.id}`;
+
+    const url = `${this._soundcloudService.basePath}/${this.song.id}`;
+
     this._player.load(url, this._defaultSongOptions)
       .then(() => {
         this._player.getCurrentSound().then(sound => this.song = sound);
@@ -104,12 +113,13 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this._getSongList();
         this._addRadioToHistory();
     });
+
     this._player.on(SoundcloudWidget.events.FINISH, () => {
       this._addSongToHistory();
       this.playNextSong();
     });
+
     this._setProgressTimer();
-    this._bindKeyboardShortcuts();
   }
 
   ngOnDestroy() {
@@ -117,11 +127,13 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   private _addRadioToHistory(): void {
-    let radioHistory = localStorage.radioHistory ? 
+    const radioHistory = localStorage.radioHistory ? 
       JSON.parse(localStorage.radioHistory) : [];
-    let lastRadioStation = radioHistory[radioHistory.length - 1];
+    const lastRadioStation = radioHistory[radioHistory.length - 1];
+
     // Don't save radio station if it was last played
     if (lastRadioStation && this.radio.id === lastRadioStation.id) return;
+
     radioHistory.push({
       title: this.radio.title,
       id: this.radio.id,
@@ -134,8 +146,10 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   private _addSongToHistory(): void {
     let songHistory = localStorage.songHistory ? 
       JSON.parse(localStorage.songHistory) : [];
+    
     // Tag with radio title for song history filtering
     this.song.radioStation = this.radio.title;
+
     songHistory.push({
       title: this.song.title,
       id: this.song.id,
@@ -150,8 +164,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   private _getSongList(): void {
-    let searchBy = this.radio.genre || this.radio.tag_list;
-    console.log('searching by', searchBy);
+    const searchBy = this.radio.genre || this.radio.tag_list;
+
     this._soundcloudService.search(searchBy)
       .subscribe(res => {
         this._songList = this._soundcloudService.shuffleSongList(res.json());
@@ -161,7 +175,7 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   }
 
   private _keydownEventHandler = (event: any):void => {
-    if (event.target.nodeName === 'BODY') {
+    if (event.target.nodeName !== 'INPUT') {
       switch (event.keyCode) {
         case Keycodes.Spacebar:
           event.preventDefault();
