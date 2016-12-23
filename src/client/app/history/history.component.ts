@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 
+import { HistoryService } from './history.service';
+
 @Component({
   moduleId: module.id,
   selector: 'sr-history',
   templateUrl: 'history.component.html',
   styleUrls: ['history.component.css'],
 })
-
 export class HistoryComponent implements OnInit {
   public radioStations: any[];
   public songs: any[];
 
-  constructor() {}
+  constructor(private _historyService: HistoryService) {}
 
   ngOnInit() {
-    this.radioStations = localStorage.radioHistory ?
-      JSON.parse(localStorage.radioHistory) : [];
-    this.songs = localStorage.songHistory ?
-      JSON.parse(localStorage.songHistory) : [];
+    this.radioStations = this._historyService.getRadioHistory();
+    this.songs = this._historyService.getSongHistory();
   }
 }

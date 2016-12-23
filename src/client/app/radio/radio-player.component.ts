@@ -4,6 +4,7 @@ import * as SoundcloudWidget from 'soundcloud-widget';
 
 import { ControlTypes, Keycodes } from './index';
 import { SoundcloudService } from '../song/index';
+import { HistoryService } from '../history/index';
 
 @Component({
   moduleId: module.id,
@@ -29,7 +30,8 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
   private _songList: any[];
 
   constructor(private _soundcloudService: SoundcloudService,
-             private _toasterService: ToasterService) {
+              private _historyService: HistoryService,
+              private _toasterService: ToasterService) {
   }
 
   public changeVolume(volume: number): void {
@@ -111,11 +113,11 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
         this.loading = false;
         this._player.play();
         this._getSongList();
-        this._addRadioToHistory();
+        this._historyService.addRadioToHistory(this.radio);
     });
 
     this._player.on(SoundcloudWidget.events.FINISH, () => {
-      this._addSongToHistory();
+      this._historyService.addSongToHistory(this.song, this.radio);
       this.playNextSong();
     });
 
@@ -124,39 +126,6 @@ export class RadioPlayerComponent implements OnChanges, OnDestroy {
 
   ngOnDestroy() {
     this._unbindKeyboardShortcuts();
-  }
-
-  private _addRadioToHistory(): void {
-    const radioHistory = localStorage.radioHistory ? 
-      JSON.parse(localStorage.radioHistory) : [];
-    const lastRadioStation = radioHistory[radioHistory.length - 1];
-
-    // Don't save radio station if it was last played
-    if (lastRadioStation && this.radio.id === lastRadioStation.id) return;
-
-    radioHistory.push({
-      title: this.radio.title,
-      id: this.radio.id,
-      artwork_url: this.radio.artwork_url,
-      addedAt: new Date()
-    });
-    localStorage.radioHistory = JSON.stringify(radioHistory);
-  }
-
-  private _addSongToHistory(): void {
-    let songHistory = localStorage.songHistory ? 
-      JSON.parse(localStorage.songHistory) : [];
-    
-    // Tag with radio title for song history filtering
-    this.song.radioStation = this.radio.title;
-
-    songHistory.push({
-      title: this.song.title,
-      id: this.song.id,
-      artwork_url: this.song.artwork_url,
-      addedAt: new Date()
-    });
-    localStorage.songHistory = JSON.stringify(songHistory);
   }
 
   private _bindKeyboardShortcuts(): void {

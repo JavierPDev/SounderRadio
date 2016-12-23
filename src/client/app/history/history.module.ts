@@ -4,10 +4,14 @@ import { RouterModule } from '@angular/router';
 import { MomentModule } from 'angular2-moment';
 
 import { HistoryComponent } from './index';
+import { HistoryService } from './history.service';
 
 @NgModule({
   imports: [CommonModule, RouterModule, MomentModule],
   declarations: [HistoryComponent],
-  exports: []
+  exports: [],
+  providers: [
+    HistoryService
+  ]
 })
 export class HistoryModule { }
