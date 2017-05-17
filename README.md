@@ -1,6 +1,6 @@
 # Introduction
 
-Sounder Radio is a simple radio web app powered by the [SoundCloud](http://soundcloud.com) HTTP and widget APIs. It is built using [Angular2](http://angular.io) with the [angular2-seed project](https://github.com/mgechev/angular2-seed) serving as the base. Sounder Radio is a work in progress.
+Sounder Radio is a simple radio web app powered by the [SoundCloud](http://soundcloud.com) HTTP and widget APIs. It is built using [Angular](http://angular.io). Sounder Radio is a work in progress.
 
 Sounder Radio uses the following dependencies:
 
@@ -16,11 +16,7 @@ Sounder Radio uses the following dependencies:
 
 # How to start
 
-**Note** that this project requires node v4.x.x or higher and npm 2.14.7.
-
-**Here is how to [speed-up the build on Windows](https://github.com/mgechev/angular2-seed/wiki/Speed-up-the-build-on-Windows)**.
-
-**Note** that this project requires a SoundCloud client id. Once you have created one through SoundCloud it must be entered in the project config file located in /tools/config/project.config.ts
+**Note** that this project requires a SoundCloud client id. Once you have created one through SoundCloud it must be entered in the SoundCloud service file. 
 
 
 ```bash
@@ -30,11 +26,4 @@ cd SounderRadio
 npm install
 # watches your files and uses livereload by default
 npm start
-
-# dev build
-npm run build.dev
-# prod build
-npm run build.prod
-# prod build with AoT compilation
-npm run build.prod.exp
-
+```
